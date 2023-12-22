@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/mainMenuFragment">
+
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="ru.h0me.memorygame.ui.MainMenuFragment"
+        android:label="MainMenuFragment" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_gameSceneFragment"
+            app:destination="@id/gameSceneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameSceneFragment"
+        android:name="ru.h0me.memorygame.ui.GameSceneFragment"
+        android:label="GameSceneFragment" >
+        <action
+            android:id="@+id/action_gameSceneFragment_to_endGameFragment"
+            app:destination="@id/endGameFragment" />
+        <action
+            android:id="@+id/action_gameSceneFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/endGameFragment"
+        android:name="ru.h0me.memorygame.ui.EndGameFragment"
+        android:label="EndGameFragment" >
+        <action
+            android:id="@+id/action_endGameFragment_to_gameSceneFragment"
+            app:destination="@id/gameSceneFragment" />
+        <action
+            android:id="@+id/action_endGameFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+</navigation>

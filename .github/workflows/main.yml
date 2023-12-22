@@ -34,5 +34,5 @@ jobs:
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: memory-game-h0me.apk
-        path: app/build/outputs/apk/debug/memory-game-h0me.apk
+        name: app-debug.apk
+        path: app/build/outputs/apk/debug/app-debug.apk

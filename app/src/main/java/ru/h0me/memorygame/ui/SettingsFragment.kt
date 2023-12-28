@@ -43,7 +43,7 @@ class SettingsFragment : Fragment() {
                 binding.backButton.setImageResource(R.drawable.cat_mode_back_button_48)
                 binding.enabledText.visibility = View.VISIBLE
             } else {
-                tapsOnPaw = 0
+                tapsOnPaw
                 binding.root.setBackgroundColor(
                     ContextCompat.getColor(
                         this@SettingsFragment.requireContext(), R.color.white

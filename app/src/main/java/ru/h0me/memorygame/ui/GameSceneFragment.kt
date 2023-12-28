@@ -5,6 +5,7 @@ import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -61,7 +62,7 @@ class GameSceneFragment : Fragment() {
                         this@GameSceneFragment.requireContext(), R.color.cat_mode_background
                     )
                 )
-                binding.backButton.setImageResource(R.drawable.cat_mode_back_button_48)
+                binding.backToMenuButton.setImageResource(R.drawable.cat_mode_back_button_48)
                 binding.balanceIcon.setImageResource(R.drawable.cat_mode_coin_24)
                 binding.timeIcon.setImageResource(R.drawable.cat_mode_time_24)
             } else {
@@ -71,7 +72,7 @@ class GameSceneFragment : Fragment() {
                         this@GameSceneFragment.requireContext(), R.color.white
                     )
                 )
-                binding.backButton.setImageResource(R.drawable.back_button_48)
+                binding.backToMenuButton.setImageResource(R.drawable.back_button_48)
                 binding.balanceIcon.setImageResource(R.drawable.coin_24)
                 binding.timeIcon.setImageResource(R.drawable.time_24)
             }
@@ -124,7 +125,7 @@ class GameSceneFragment : Fragment() {
             }
         }
 
-        binding.backButton.setOnClickListener {
+        binding.backToMenuButton.setOnClickListener {
             findNavController().navigate(R.id.action_gameSceneFragment_to_mainMenuFragment)
         }
 
@@ -159,6 +160,8 @@ class GameSceneFragment : Fragment() {
                 secondButton = null
 
             } else {
+                this@GameSceneFragment.requireActivity()
+                    .findViewById<ImageButton>(R.id.backToMenuButton).isClickable = false
                 lifecycleScope.launch {
                     delay(1000)
                         this@GameSceneFragment.requireActivity()
@@ -175,7 +178,10 @@ class GameSceneFragment : Fragment() {
                             .isClickable = true
                         firstButton = null
                         secondButton = null
+                    this@GameSceneFragment.requireActivity()
+                        .findViewById<ImageButton>(R.id.backToMenuButton).isClickable = true
                 }
+
             }
             firstButtonShape = 0
             secondButtonShape = 0

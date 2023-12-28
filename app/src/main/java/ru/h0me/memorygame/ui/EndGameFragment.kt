@@ -30,6 +30,34 @@ class EndGameFragment : Fragment() {
             false
         )
 
+        viewModel.catMode.observe(viewLifecycleOwner){
+            if (it == true){
+                binding.root.setBackgroundColor( ContextCompat.getColor(
+                    this@EndGameFragment.requireContext(), R.color.cat_mode_background
+                ))
+                binding.victoryImage.setImageResource(R.drawable.cat_mode_victory)
+                binding.rewardIcon.setImageResource(R.drawable.cat_mode_coin_48)
+                binding.playButton.setBackgroundColor( ContextCompat.getColor(
+                    this@EndGameFragment.requireContext(), R.color.cat_mode_button
+                ))
+                binding.menuButton.setBackgroundColor( ContextCompat.getColor(
+                    this@EndGameFragment.requireContext(), R.color.cat_mode_button
+                ))
+            } else {
+                binding.root.setBackgroundColor( ContextCompat.getColor(
+                    this@EndGameFragment.requireContext(), R.color.white
+                ))
+                binding.victoryImage.setImageResource(R.drawable.victory)
+                binding.rewardIcon.setImageResource(R.drawable.coin_48)
+                binding.playButton.setBackgroundColor( ContextCompat.getColor(
+                    this@EndGameFragment.requireContext(), R.color.black
+                ))
+                binding.menuButton.setBackgroundColor( ContextCompat.getColor(
+                    this@EndGameFragment.requireContext(), R.color.black
+                ))
+            }
+        }
+
         viewModel.lastReward.observe(viewLifecycleOwner) {
             binding.rewardValue.text = it.toString()
         }

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
+        android:contentDescription="@string/def_desc"
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@color/transparent"
-        app:icon="@drawable/back_button_48"
-        app:iconTint="@color/black"
+        android:src="@drawable/back_button_48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,16 +58,16 @@
         android:src="@drawable/coin_24"
         app:layout_constraintBottom_toBottomOf="@id/balanceText"
         app:layout_constraintEnd_toStartOf="@id/balanceText"
-        app:layout_constraintTop_toTopOf="@id/balanceText"
-        app:tint="@color/gold" />
+        app:layout_constraintTop_toTopOf="@id/balanceText" />
 
     <TextView
         android:id="@+id/lessTimeDesc"
         android:text="@string/less_time_more_reward"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:fontFamily="casual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playGrid"/>

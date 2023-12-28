@@ -18,6 +18,49 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     val lastRoundTimeInSec = MutableLiveData(0L)
 
+    private val catList = listOf(
+        R.drawable.cat_1,
+        R.drawable.cat_1,
+        R.drawable.cat_2,
+        R.drawable.cat_2,
+        R.drawable.cat_3,
+        R.drawable.cat_3,
+        R.drawable.cat_4,
+        R.drawable.cat_4,
+        R.drawable.cat_5,
+        R.drawable.cat_5,
+        R.drawable.cat_6,
+        R.drawable.cat_6,
+        R.drawable.cat_7,
+        R.drawable.cat_7,
+        R.drawable.cat_8,
+        R.drawable.cat_8,
+    )
+
+    private val shapeList = listOf(
+        R.drawable.shape_1,
+        R.drawable.shape_1,
+        R.drawable.shape_2,
+        R.drawable.shape_2,
+        R.drawable.shape_3,
+        R.drawable.shape_3,
+        R.drawable.shape_4,
+        R.drawable.shape_4,
+        R.drawable.shape_5,
+        R.drawable.shape_5,
+        R.drawable.shape_6,
+        R.drawable.shape_6,
+        R.drawable.shape_7,
+        R.drawable.shape_7,
+        R.drawable.shape_8,
+        R.drawable.shape_8,
+    )
+
+    private val _catMode = MutableLiveData(false)
+    val catMode = _catMode
+
+    var currentModeMap = shapeList
+
     init {
         load()
     }
@@ -47,7 +90,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         )
         val editor = sharedPreferences.edit()
         if ((currentBestTimeInSec.value!! > lastRoundTimeInSec.value!!)
-            || (currentBestTimeInSec.value!! == 0L)) {
+            || (currentBestTimeInSec.value!! == 0L)
+        ) {
             editor.putLong("best_time_key", lastRoundTimeInSec.value!!)
                 .apply()
             load()
@@ -69,8 +113,18 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         changeBestTime()
     }
 
-    fun doubleBalance(){
+    fun doubleBalance() {
         lastReward.value = lastReward.value?.times(2)
+    }
+
+    fun catModeOn(){
+        _catMode.value = true
+        currentModeMap = catList
+    }
+
+    fun catModeOff(){
+        _catMode.value = false
+        currentModeMap = shapeList
     }
 
 }

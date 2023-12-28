@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MemoryGame</string>
+    <string name="app_name">Memory Cat</string>
     <string name="play">PLAY</string>
     <string name="def_desc">Description</string>
     <string name="best_time">Best time:</string>
@@ -9,6 +9,7 @@
     <string name="back_to_menu">BACK TO MENU</string>
     <string name="congrats_desc">You Great! Your reward:</string>
     <string name="play_again">PLAY AGAIN</string>
-    <string name="app_shared_prefs">com.pp.sharedprefs.PREFERENCES_FILE_KEY</string>
+    <string name="app_shared_prefs" translatable="false">com.pp.sharedprefs.PREFERENCES_FILE_KEY</string>
     <string name="less_time_more_reward">Less time - more reward!</string>
+    <string name="cat_mode_is_enabled">Cat mode is enabled!</string>
 </resources>

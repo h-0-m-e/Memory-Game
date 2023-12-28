@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Memory Cat</string>
+    <string name="play">ИГРАТЬ</string>
+    <string name="def_desc">Описание</string>
+    <string name="best_time">Лучшее время:</string>
+    <string name="congratulation">ПОЗДРАВЛЯЕМ!</string>
+    <string name="x2">X2</string>
+    <string name="double_reward">УДВОИТЬ!</string>
+    <string name="back_to_menu">НАЗАД В МЕНЮ</string>
+    <string name="congrats_desc">Отлично! Ваша награда:</string>
+    <string name="play_again">ИГРАТЬ СНОВА</string>
+    <string name="less_time_more_reward">Меньше времени - больше награда!</string>
+    <string name="cat_mode_is_enabled">Кошачий режим включен!</string>
+</resources>

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
@@ -29,6 +29,8 @@ class GameSceneFragment : Fragment() {
     private var secondButtonShape = 0
     private var secondButton: ImageView? = null
 
+    private var currentBackDrawable = R.drawable.back
+
     private val viewModel: GameViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
@@ -47,8 +49,32 @@ class GameSceneFragment : Fragment() {
         val chronometer = binding.gameChronometer
         var isChronometerStarted = false
 
-        viewModel.currentBalance.observe(viewLifecycleOwner){
+        viewModel.currentBalance.observe(viewLifecycleOwner) {
             binding.balanceText.text = it.toString()
+        }
+
+        viewModel.catMode.observe(viewLifecycleOwner) {
+            if (it == true) {
+                currentBackDrawable = R.drawable.cat_mode_back
+                binding.root.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this@GameSceneFragment.requireContext(), R.color.cat_mode_background
+                    )
+                )
+                binding.backButton.setImageResource(R.drawable.cat_mode_back_button_48)
+                binding.balanceIcon.setImageResource(R.drawable.cat_mode_coin_24)
+                binding.timeIcon.setImageResource(R.drawable.cat_mode_time_24)
+            } else {
+                currentBackDrawable = R.drawable.back
+                binding.root.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this@GameSceneFragment.requireContext(), R.color.white
+                    )
+                )
+                binding.backButton.setImageResource(R.drawable.back_button_48)
+                binding.balanceIcon.setImageResource(R.drawable.coin_24)
+                binding.timeIcon.setImageResource(R.drawable.time_24)
+            }
         }
 
         var matchMap: Map<ImageView, Int> = mapOf(
@@ -70,8 +96,8 @@ class GameSceneFragment : Fragment() {
             (binding.button16 to R.drawable.shape_8)
         )
 
-        matches.observe(viewLifecycleOwner){
-            if(it == matchesForWin){
+        matches.observe(viewLifecycleOwner) {
+            if (it == matchesForWin) {
                 val time = SystemClock.elapsedRealtime() - chronometer.base
                 chronometer.stop()
                 viewModel.calcReward(time)
@@ -79,12 +105,16 @@ class GameSceneFragment : Fragment() {
             }
         }
 
-        matchMap = matchMap.keys.zip(matchMap.values.shuffled()).toMap()
+        matchMap = matchMap.keys.zip(viewModel.currentModeMap.shuffled()).toMap()
 
         for (view in matchMap.keys) {
-            view.setImageResource(R.drawable.back)
+            if (viewModel.catMode.value == true) {
+                view.setImageResource(R.drawable.cat_mode_back)
+            } else {
+                view.setImageResource(R.drawable.back)
+            }
             view.setOnClickListener {
-                if(!isChronometerStarted) {
+                if (!isChronometerStarted) {
                     chronometer.start()
                     isChronometerStarted = true
                 }
@@ -131,21 +161,20 @@ class GameSceneFragment : Fragment() {
             } else {
                 lifecycleScope.launch {
                     delay(1000)
-                    this@GameSceneFragment.requireActivity()
-                        .findViewById<ImageView>(firstButton!!.id)
-                        .setImageResource(R.drawable.back)
-                    this@GameSceneFragment.requireActivity()
-                        .findViewById<ImageView>(secondButton!!.id)
-                        .setImageResource(R.drawable.back)
-                    this@GameSceneFragment.requireActivity()
-                        .findViewById<ImageView>(firstButton!!.id)
-                        .isClickable = true
-                    this@GameSceneFragment.requireActivity()
-                        .findViewById<ImageView>(secondButton!!.id)
-                        .isClickable = true
-                    firstButton = null
-                    secondButton = null
-
+                        this@GameSceneFragment.requireActivity()
+                            .findViewById<ImageView>(firstButton!!.id)
+                            .setImageResource(currentBackDrawable)
+                        this@GameSceneFragment.requireActivity()
+                            .findViewById<ImageView>(secondButton!!.id)
+                            .setImageResource(currentBackDrawable)
+                        this@GameSceneFragment.requireActivity()
+                            .findViewById<ImageView>(firstButton!!.id)
+                            .isClickable = true
+                        this@GameSceneFragment.requireActivity()
+                            .findViewById<ImageView>(secondButton!!.id)
+                            .isClickable = true
+                        firstButton = null
+                        secondButton = null
                 }
             }
             firstButtonShape = 0

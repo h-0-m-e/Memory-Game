@@ -10,4 +10,6 @@
     <color name="gold">#FFC107</color>
     <color name="gray">#8F8F8F</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="cat_mode_background">#FCD8FF</color>
+    <color name="cat_mode_button">#A02DAA</color>
 </resources>

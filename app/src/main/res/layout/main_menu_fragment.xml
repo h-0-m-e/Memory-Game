@@ -25,8 +25,7 @@
         android:src="@drawable/coin_24"
         app:layout_constraintBottom_toBottomOf="@id/balanceText"
         app:layout_constraintEnd_toStartOf="@id/balanceText"
-        app:layout_constraintTop_toTopOf="@id/balanceText"
-        app:tint="@color/gold" />
+        app:layout_constraintTop_toTopOf="@id/balanceText" />
 
     <TextView
         android:id="@+id/bestTimeDesc"
@@ -89,6 +88,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo" />
+
+
 
     <ImageButton
         android:id="@+id/privacyButton"

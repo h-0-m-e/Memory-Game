@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_gameSceneFragment"
             app:destination="@id/gameSceneFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameSceneFragment"
@@ -34,4 +37,8 @@
             android:id="@+id/action_endGameFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.h0me.memorygame.ui.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
